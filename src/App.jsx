@@ -12,9 +12,9 @@ function App() {
   useEffect(() => {
     const url = `https://rickandmortyapi.com/api/location/3`;
     getLocation(url);
-  }, [])
+  }, []);
 
-  console.log(location);
+  //console.log(location);
   
   return (
     <div>
@@ -26,7 +26,7 @@ function App() {
         location?.residents.map(resident => (
           <ResidentCard 
             key={resident}
-            resident={resident}
+            url={resident}
           />
         ))
       }

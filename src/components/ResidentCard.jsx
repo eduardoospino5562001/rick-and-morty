@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import useFetch from '../hooks/useFetch';
 
-const ResidentCard = ({resident}) => {
+const ResidentCard = ({url}) => {
 
-    //console.log(resident);
-  return (
-    <div>ResidentCard</div>
-  )
+    //console.log(url);
+    const [ resident, getResident ] = useFetch();
+
+    useEffect(() => {
+      
+    getResident(url);
+      
+    }, []);
+
+    console.log(resident);
+    
+
+    return (
+        <div>ResidentCard</div>
+    )
 }
 
 export default ResidentCard;
