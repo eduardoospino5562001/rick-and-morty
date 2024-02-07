@@ -3,20 +3,21 @@ import useFetch from '../hooks/useFetch';
 
 const ResidentCard = ({url}) => {
 
-    //console.log(url);
     const [ resident, getResident ] = useFetch();
 
     useEffect(() => {
-      
-    getResident(url);
-      
+        getResident(url);
     }, []);
 
     console.log(resident);
     
 
     return (
-        <div>ResidentCard</div>
+        <article>
+            <figure>
+                <img src={resident?.image} alt="resident image" />
+            </figure>
+        </article>
     )
 }
 
