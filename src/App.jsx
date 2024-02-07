@@ -22,26 +22,29 @@ function App() {
     setfinder(textInput.current.value.trim());
   }
 
-  console.log(finder)
 
   return (
-    <div>
+    <div className='app'>
       {
         isLoading ? 
           <h2>Loading...</h2>
           :
           <>
             <h1>Rick and Morty</h1>
-            <form onSubmit={handleSubmit}>
+            <form 
+            onSubmit={handleSubmit}
+            className='app__form'
+            >
               <input 
+                className='app__text'
                 type="number" 
                 ref={textInput} 
                 placeholder='type a number (1 to 126)'
               />
-              <button>Search</button>
+              <button className='app__btn'>Search</button>
             </form>
             {
-              hasError ?
+              hasError || finder==='0' ?
                 <h2>This location do not exist</h2>
                 :
                 <>

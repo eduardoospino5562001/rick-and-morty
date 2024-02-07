@@ -1,13 +1,14 @@
 import React from 'react';
+import './styles/locationCard.css';
 
 const LocationCard = ({ location }) => {
     return (
-      <section>
-        <h2>{location?.name}</h2>
-        <ul>
-          <li><span>Type: </span>{location?.type}</li>
-          <li><span>Dimension: </span>{location?.dimension}</li>
-          <li><span>Population: </span>{location?.residents.length }</li>
+      <section className='location'>
+        <h2 className='location__title'>{location?.name}</h2>
+        <ul className='location__list'>
+          <li className='location__item'><span>Type: </span>{location?.type}</li>
+          <li className='location__item'><span>Dimension: </span>{location?.dimension}</li>
+          <li className='location__item'><span>Population: </span>{location?.residents.length }</li>
         </ul>
       </section>
     );

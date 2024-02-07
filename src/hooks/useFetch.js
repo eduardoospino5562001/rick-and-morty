@@ -9,8 +9,15 @@ const useFetch = () => {
 
     const getApi = url => {
         axios.get(url)
-            .then(res => setapiData(res.data))
-            .catch(err => console.log(err))
+            .then(res => {
+                sethasError(false);
+                setapiData(res.data);
+            })
+            .catch(err => {
+                sethasError(true)
+                console.log(err);
+                
+            })
             .finally(() => {
                 setisLoading(false);
             });
