@@ -3,10 +3,12 @@ import './App.css';
 import useFetch from './hooks/useFetch';
 import LocationCard from './components/LocationCard';
 import ResidentCard from './components/ResidentCard';
+import Pagination from './components/Pagination';
 
 function App() {
   const [finder, setfinder] = useState(Math.floor(Math.random() * 126 + 1));
   const [location, getLocation, isLoading, hasError] = useFetch();
+  const [currentPage, setcurrentPage] = useState(1);
 
   useEffect(() => {
     const url = `https://rickandmortyapi.com/api/location/${finder}`;
@@ -21,6 +23,12 @@ function App() {
     event.preventDefault();
     setfinder(textInput.current.value.trim());
   }
+
+  const quantity = 5;
+  const second = currentPage * quantity;
+  const first = second - quantity;
+  const residentsPart = location && location.residents.slice(first, second);
+  const totalPages = location && Math.floor(location.residents.length / quantity) + 1;
 
 
   return (
@@ -53,7 +61,7 @@ function App() {
             />
             <div className='app__container'>
             {
-              location?.residents?.map(resident => (
+              location.residents.map(resident => (
                 <ResidentCard 
                 key={resident} 
                 url={resident} 
@@ -61,12 +69,16 @@ function App() {
             ))
             }
             </div>
-                </>
+            <Pagination
+              currentPage={currentPage}
+              setcurrentPage={setcurrentPage}
+              totalPages={totalPages}
+              />
+            </>
             }
             
           </>
       }
-      
     </div>
   );
 }
