@@ -40,7 +40,12 @@ function App() {
               />
               <button>Search</button>
             </form>
-            <LocationCard
+            {
+              hasError ?
+                <h2>This location do not exist</h2>
+                :
+                <>
+                <LocationCard
               location={location}
             />
             {
@@ -51,6 +56,9 @@ function App() {
               />
             ))
             }
+                </>
+            }
+            
           </>
       }
       

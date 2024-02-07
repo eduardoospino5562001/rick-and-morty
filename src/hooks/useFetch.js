@@ -11,7 +11,9 @@ const useFetch = () => {
         axios.get(url)
             .then(res => setapiData(res.data))
             .catch(err => console.log(err))
-            .finally(() => {});
+            .finally(() => {
+                setisLoading(false);
+            });
     }
     return [apiData, getApi, isLoading, hasError];
 }
