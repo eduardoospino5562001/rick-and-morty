@@ -1,24 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
 import useFetch from './hooks/useFetch';
 import LocationCard from './components/LocationCard';
 import ResidentCard from './components/ResidentCard';
 
 function App() {
+  const [finder, setfinder] = useState(Math.floor(Math.random() * 126 + 1));
   const [location, getLocation] = useFetch();
 
   useEffect(() => {
    
-    const randomLocation = Math.floor(Math.random() * 126 + 1);
-    const url = `https://rickandmortyapi.com/api/location/${randomLocation}`;
+    //const randomLocation = Math.floor(Math.random() * 126 + 1);
+    const url = `https://rickandmortyapi.com/api/location/${finder}`;
     getLocation(url);
-  }, []); 
+  }, [finder]); 
+
+  const textInput = useRef();
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    setfinder(textInput.current.value.trim());
+  }
+
+  console.log(finder)
 
   return (
     <div>
       <h1>Rick and Morty</h1>
-      <form>
-        <input type="number" />
+      <form onSubmit={handleSubmit}>
+        <input 
+          type="number" 
+          ref={textInput} 
+          placeholder='type a number (1 to 126)'
+        />
         <button>Search</button>
       </form>
       <LocationCard
