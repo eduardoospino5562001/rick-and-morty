@@ -18,7 +18,7 @@ const ResidentCard = ({url}) => {
             <figure className='resident__photo'>
                 <img src={resident?.image} alt="resident image" />
                 <figcaption className='resident__status'>
-                    <div className='resident__circle'></div>
+                    <div className={`resident__circle ${resident?.status}`}></div>
                     <p>{resident?.status}</p>
                 </figcaption>
             </figure>

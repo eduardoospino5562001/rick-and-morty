@@ -51,6 +51,7 @@ function App() {
                 <LocationCard
               location={location}
             />
+            <div className='app__container'>
             {
               location?.residents?.map(resident => (
                 <ResidentCard 
@@ -59,6 +60,7 @@ function App() {
               />
             ))
             }
+            </div>
                 </>
             }
             
